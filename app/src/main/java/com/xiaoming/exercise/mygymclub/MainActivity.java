@@ -1,8 +1,8 @@
 package com.xiaoming.exercise.mygymclub;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity
     private boolean isSignIn = false;
 
     private FragmentManager mFragmentManager;
+    private Fragment mFragmentShown;
     private HomePageFragment mHomePageFragment;
     private TrainerBookingFragment mBookingFragment;
 
@@ -119,10 +120,10 @@ public class MainActivity extends AppCompatActivity
         mBottomNavigationBar = findViewById(R.id.bottomNavigationBar);
 
         mTabMenuHome = findViewById(R.id.tab_home_page);
-        mTabMenuHome.setOnClickListener(this::bottomNavigationBarAction);
+        mTabMenuHome.setOnClickListener(this::onBottomNavigationBarSelected);
 
         mTabMenuBooking = findViewById(R.id.tab_train);
-        mTabMenuBooking.setOnClickListener(this::bottomNavigationBarAction);
+        mTabMenuBooking.setOnClickListener(this::onBottomNavigationBarSelected);
     }
 
     private void setSelected() {
@@ -130,41 +131,23 @@ public class MainActivity extends AppCompatActivity
         mTabMenuBooking.setSelected(false);
     }
 
-    private void hideAllFragment(FragmentTransaction fragmentTransaction) {
-        if (mHomePageFragment != null) {
-            fragmentTransaction.hide(mHomePageFragment);
-        }
-        if (mBookingFragment != null) {
-            fragmentTransaction.hide(mBookingFragment);
-        }
-    }
-
-    private void bottomNavigationBarAction(View v) {
+    private void onBottomNavigationBarSelected(View v) {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         //先隐藏全部Fragment
-        hideAllFragment(transaction);
         switch (v.getId()) {
             case R.id.tab_home_page:
                 //set all tab item selected to false
                 setSelected();
                 mTabMenuHome.setSelected(true);
-                if (mHomePageFragment == null) {
-                    mHomePageFragment = new HomePageFragment();
-                    transaction.add(R.id.fragment_container, mHomePageFragment);
-                } else {
-                    transaction.show(mHomePageFragment);
-                }
+                mFragmentShown = new HomePageFragment();
+                transaction.replace(R.id.fragment_container_main, mHomePageFragment);
                 toolbar.setTitle(R.string.home_title);
                 break;
             case R.id.tab_train:
                 setSelected();
                 mTabMenuBooking.setSelected(true);
-                if (mBookingFragment == null) {
-                    mBookingFragment = new TrainerBookingFragment();
-                    transaction.add(R.id.fragment_container, mBookingFragment);
-                } else {
-                    transaction.show(mBookingFragment);
-                }
+                mFragmentShown = new TrainerBookingFragment();
+                transaction.replace(R.id.fragment_container_main, mBookingFragment);
                 toolbar.setTitle(R.string.trainer_list_title);
                 break;
         }

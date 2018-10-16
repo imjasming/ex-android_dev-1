@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayoutHor"
+    android:background="@drawable/sport"
+    android:orientation="vertical">
+
+    <EditText
+        style="@style/Input"
+        android:hint="@string/register_username" />
+
+    <EditText
+        style="@style/Input"
+        android:hint="@string/register_passport"
+        android:inputType="textPassword"
+        android:maxLength="16" />
+
+    <EditText
+        style="@style/Input"
+        android:hint="@string/register_passport2"
+        android:inputType="textPassword"
+        android:maxLength="16" />
+
+    <EditText
+        style="@style/Input"
+        android:hint="@string/phone"
+        android:maxLength="16" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="44dp"
+            android:hint="@string/proveNumber"
+            android:maxLength="11"
+            android:padding="3dp" />
+
+        <Button
+            style="@style/ButtonNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_button"
+            android:text="@string/proof"
+            android:textStyle="italic|bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/confirm"
+            style="@style/ButtonNormal"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/confirm"
+            android:textStyle="bold" />
+
+        <Button
+            style="@style/ButtonNormal"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/back"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/aboutus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/about"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</LinearLayout>

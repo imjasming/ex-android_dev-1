@@ -23,12 +23,8 @@ public class MainActivity extends AppCompatActivity
     private TextView mTabMenuHome;
     private TextView mTabMenuBooking;
 
-    private boolean isSignIn = false;
-
     private FragmentManager mFragmentManager;
     private Fragment mFragmentShown;
-    private HomePageFragment mHomePageFragment;
-    private TrainerBookingFragment mBookingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +50,7 @@ public class MainActivity extends AppCompatActivity
         mTabMenuHome.performClick();  //触发点击以进入HomePage
     }
 
-//Begin Auto Generated
+    //Begin Auto Generated
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -140,14 +136,14 @@ public class MainActivity extends AppCompatActivity
                 setSelected();
                 mTabMenuHome.setSelected(true);
                 mFragmentShown = new HomePageFragment();
-                transaction.replace(R.id.fragment_container_main, mHomePageFragment);
+                transaction.replace(R.id.fragment_container_main, mFragmentShown);
                 toolbar.setTitle(R.string.home_title);
                 break;
             case R.id.tab_train:
                 setSelected();
                 mTabMenuBooking.setSelected(true);
                 mFragmentShown = new TrainerBookingFragment();
-                transaction.replace(R.id.fragment_container_main, mBookingFragment);
+                transaction.replace(R.id.fragment_container_main, mFragmentShown);
                 toolbar.setTitle(R.string.trainer_list_title);
                 break;
         }

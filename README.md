@@ -5,4 +5,5 @@
 以及提供在这些界面间切换的功能，其他功能皆未提供  
 团队：张小明（16301026），蒋威威  
 所用技术：ConstraintLayout，GridView，NavigationBar，BottomNavigationBar，Intent，Activity，  
-Fragment  
+Fragment，以及第三方的轮播图 EasyBanner    
+其中，登陆界面，主界面由张小明编写，注册界面和教练booking list界面由蒋威威编写

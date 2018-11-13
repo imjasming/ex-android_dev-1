@@ -1,10 +1,12 @@
-package com.xiaoming.exercise.mygymclub;
+package com.xiaoming.exercise.mygymclub.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.xiaoming.exercise.mygymclub.R;
 
 public class TeachersActivity extends AppCompatActivity {
     LinearLayout teacher1;

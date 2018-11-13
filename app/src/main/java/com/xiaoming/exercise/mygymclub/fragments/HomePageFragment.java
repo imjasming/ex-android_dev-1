@@ -1,4 +1,4 @@
-package com.xiaoming.exercise.mygymclub;
+package com.xiaoming.exercise.mygymclub.fragments;
 
 import android.content.Context;
 import android.os.Bundle;

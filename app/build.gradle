@@ -31,4 +31,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.github.xfhy:EasyBanner:v1.0.3'
+    // Okhttp库
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    // Retrofit库
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    //将JSON字符串转换为对象需要使用的依赖
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 }

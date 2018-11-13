@@ -1,4 +1,4 @@
-package com.xiaoming.exercise.mygymclub;
+package com.xiaoming.exercise.mygymclub.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,6 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.xiaoming.exercise.mygymclub.R;
+import com.xiaoming.exercise.mygymclub.fragments.HomePageFragment;
+import com.xiaoming.exercise.mygymclub.fragments.TrainerBookingFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

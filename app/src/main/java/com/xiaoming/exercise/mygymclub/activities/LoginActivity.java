@@ -4,18 +4,21 @@ import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 
 import com.xiaoming.exercise.mygymclub.R;
 
 public class LoginActivity extends AppCompatActivity {
-    private boolean isSignIn = false;
     private TextInputEditText mName;
     private TextInputEditText mPassword;
     private Button mLoginButton;
     private Button mRegisterButton;
     private Button mForgetButton;
+    private String username;
+    private String password;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +27,10 @@ public class LoginActivity extends AppCompatActivity {
         bindView();
 
         mLoginButton.setOnClickListener((View v) -> {
-            //没有登录就进入登录界面
-            if (!isSignIn) {
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+            if (checkForm()){
+
+                this.finish();
             }
-            //没有用户数据，直接finish，进入mainActivity
-            this.finish();
         });
         mRegisterButton.setOnClickListener((View v) -> {
             Intent intent = new Intent(this, RegisterActivity.class);
@@ -46,7 +46,23 @@ public class LoginActivity extends AppCompatActivity {
         mForgetButton = findViewById(R.id.button_login_forget);
     }
 
-    private void checkForm(){
+    private boolean checkForm() {
+        username = mName.getText().toString();
+        password = mPassword.getText().toString();
 
+        boolean isPass = true;
+        if (username.isEmpty()) {
+            mName.setError("请输用户名");
+            isPass = false;
+        } else {
+            mName.setError(null);
+        }
+        if (password.isEmpty() || password.length() < 6) {
+            mPassword.setError("请输入至少六位数密码");
+            isPass = false;
+        } else {
+            mPassword.setError(null);
+        }
+        return isPass;
     }
 }

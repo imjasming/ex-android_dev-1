@@ -33,14 +33,16 @@ public class RegisterActivity extends AppCompatActivity {
         mConfirm.setOnClickListener(v -> {
             if (checkForm()){
                 RestClient.builder()
-                        .url("sign_in/")
+                        .url("register/")
                         .params("username", username)
+                        .params("email", email)
                         .params("password", password)
                         .success(response -> {
 
                         })
                         .build()
                         .post();
+
                 Toast.makeText(this, "验证通过", Toast.LENGTH_LONG).show();
             }
         });

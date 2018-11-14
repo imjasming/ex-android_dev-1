@@ -20,6 +20,8 @@ import com.xiaoming.exercise.mygymclub.R;
 import com.xiaoming.exercise.mygymclub.fragments.HomePageFragment;
 import com.xiaoming.exercise.mygymclub.fragments.TrainerBookingFragment;
 
+import cn.bmob.v3.Bmob;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Toolbar toolbar;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Bmob.initialize(this, "d34d0b4d7384d7ed6b23435cb5d9a9ff");
 
         //绑定实例域
         bindField();

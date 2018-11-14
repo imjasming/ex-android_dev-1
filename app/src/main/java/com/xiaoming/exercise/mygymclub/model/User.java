@@ -3,7 +3,9 @@ package com.xiaoming.exercise.mygymclub.model;
 import android.support.annotation.NonNull;
 import java.util.UUID;
 
-public class User {
+import cn.bmob.v3.BmobObject;
+
+public class User extends BmobObject {
     private UUID mUUID;
     private String mNickName;
     private String mPassword;

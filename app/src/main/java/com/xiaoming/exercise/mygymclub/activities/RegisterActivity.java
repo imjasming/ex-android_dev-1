@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.xiaoming.exercise.mygymclub.R;
 import com.xiaoming.exercise.mygymclub.net.RestClient;
+import com.xiaoming.exercise.mygymclub.net.callback.IError;
 import com.xiaoming.exercise.mygymclub.net.callback.ISuccess;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -33,12 +34,16 @@ public class RegisterActivity extends AppCompatActivity {
         mConfirm.setOnClickListener(v -> {
             if (checkForm()){
                 RestClient.builder()
-                        .url("register/")
+                        .url("192.168.10.108:8080/register/")
                         .params("username", username)
                         .params("email", email)
                         .params("password", password)
                         .success(response -> {
-
+                            Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show();
+                            this.finish();
+                        })
+                        .error((code, msg) -> {
+                            Toast.makeText(this, "注册失败", Toast.LENGTH_LONG).show();
                         })
                         .build()
                         .post();

@@ -7,8 +7,12 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.xiaoming.exercise.mygymclub.R;
+import com.xiaoming.exercise.mygymclub.net.RestClient;
+import com.xiaoming.exercise.mygymclub.net.callback.IError;
+import com.xiaoming.exercise.mygymclub.net.callback.IFailure;
 
 public class LoginActivity extends AppCompatActivity {
     private TextInputEditText mName;
@@ -28,6 +32,22 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginButton.setOnClickListener((View v) -> {
             if (checkForm()){
+                RestClient.builder()
+                        .url("192.168.10.108:8080/login/")
+                        .params("username", username)
+                        .params("password", password)
+                        .success(response -> {
+                            Intent intent = new Intent(this, MainActivity.class);
+                            startActivity(intent);
+                        })
+                        .failure(() -> {
+
+                        })
+                        .error((code, msg) -> {
+                            Toast.makeText(this, "用户名或密码输入错误",Toast.LENGTH_LONG).show();
+                        })
+                        .build()
+                        .post();
 
                 this.finish();
             }

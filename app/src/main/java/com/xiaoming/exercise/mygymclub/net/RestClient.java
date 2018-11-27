@@ -22,13 +22,13 @@ public class RestClient {
     private final IRequest REQUEST;
     private final RequestBody BODY;
 
-    public RestClient(String url,
-                      Map<String, Object> params,
-                      ISuccess success,
-                      IFailure failure,
-                      IError error,
-                      IRequest request,
-                      RequestBody body) {
+    RestClient(String url,
+               Map<String, Object> params,
+               ISuccess success,
+               IFailure failure,
+               IError error,
+               IRequest request,
+               RequestBody body) {
         this.URL = url;
         this.PARAMS.putAll(params);
         this.SUCCESS = success;
@@ -43,7 +43,7 @@ public class RestClient {
     }
 
     private void request(HttpMethod method) {
-        final RestService service = RestCreator.getRestService();
+        final RestServiceAPI service = RestCreator.getRestServiceAPI();
         Call<String> call = null;
 
         if (REQUEST != null) {

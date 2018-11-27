@@ -3,24 +3,24 @@ package com.xiaoming.exercise.mygymclub.model;
 import android.support.annotation.NonNull;
 import java.util.UUID;
 
-import cn.bmob.v3.BmobObject;
 
-public class User extends BmobObject {
+public class User{
     private UUID mUUID;
     private String mNickName;
     private String mPassword;
-    private int mTelNum;
+    private String mEmail;
+    //private int mTelNum;
 
     public User(UUID uuid, String password){
         mUUID = uuid;
         mPassword = password;
     }
 
-    public User(UUID uuid, String nickName, String password, int telNum){
+    public User(UUID uuid, String nickName, String password, String email){
         mUUID = uuid;
         mNickName = nickName;
         mPassword = password;
-        mTelNum = telNum;
+        mEmail = email;
     }
 
     public UUID getUUID() {
@@ -39,13 +39,13 @@ public class User extends BmobObject {
         mNickName = nickName;
     }
 
-    public int getTelNum() {
-        return mTelNum;
-    }
-
-    public void setTelNum(int telNum) {
-        this.mTelNum = telNum;
-    }
+//    public int getTelNum() {
+//        return mTelNum;
+//    }
+//
+//    public void setTelNum(int telNum) {
+//        this.mTelNum = telNum;
+//    }
 
     public String getPassword() {
         return mPassword;
@@ -53,6 +53,14 @@ public class User extends BmobObject {
 
     public void setPassword(String password) {
         mPassword = password;
+    }
+
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public void setEmail(String email) {
+        mEmail = email;
     }
 
     @NonNull

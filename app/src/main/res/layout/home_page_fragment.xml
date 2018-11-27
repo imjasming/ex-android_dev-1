@@ -6,24 +6,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorBackground" >
 
-    <GridView
-        android:id="@+id/recomend_grid_view"
+    <include
+        layout="@layout/recycler_view_recomend_list"
+        android:background="@color/transparent"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/transparent"
-        android:columnWidth="120dp"
         android:gravity="center"
-        android:horizontalSpacing="16dp"
-        android:numColumns="2"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_recommend" />
+        app:layout_constraintTop_toBottomOf="@+id/button_recommend" /><!--android:stretchMode="columnWidth"-->
 
     <Button
         android:id="@+id/button_recommend"

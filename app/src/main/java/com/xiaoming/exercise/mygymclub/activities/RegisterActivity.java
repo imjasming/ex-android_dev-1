@@ -32,14 +32,14 @@ public class RegisterActivity extends AppCompatActivity {
         bindView();
 
         mConfirm.setOnClickListener(v -> {
-            if (checkForm()){
+            if (checkForm()) {
                 RestClient.builder()
-                        .url("192.168.10.108:8080/register/")
+                        .url("/signup")
                         .params("username", username)
                         .params("email", email)
                         .params("password", password)
                         .success(response -> {
-                            Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, response, Toast.LENGTH_LONG).show();
                             this.finish();
                         })
                         .error((code, msg) -> {
@@ -48,9 +48,10 @@ public class RegisterActivity extends AppCompatActivity {
                         .build()
                         .post();
 
-                Toast.makeText(this, "验证通过", Toast.LENGTH_LONG).show();
             }
         });
+
+        mBack.setOnClickListener(e -> onBack());
     }
 
     private void bindView() {
@@ -88,9 +89,13 @@ public class RegisterActivity extends AppCompatActivity {
         if (reRassword.isEmpty() || reRassword.length() < 6 || !reRassword.equals(password)) {
             mPassword2.setError("密码验证错误");
             isPass = false;
-        }else{
+        } else {
             mPassword2.setError(null);
         }
         return isPass;
+    }
+
+    private void onBack() {
+        this.finish();
     }
 }

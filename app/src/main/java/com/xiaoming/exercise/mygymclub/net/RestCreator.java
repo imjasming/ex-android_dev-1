@@ -6,7 +6,11 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+/**
+ * Create Retrofit
+ */
 public class RestCreator {
     private static class ParamsHolder{
         public static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();
@@ -16,16 +20,17 @@ public class RestCreator {
         return ParamsHolder.PARAMS;
     }
 
-    public static RestService getRestService(){
-        return RestServiceHolder.REST_SERVICE;
+    public static RestServiceAPI getRestServiceAPI(){
+        return RestServiceAPIHolder.REST_SERVICE_API;
     }
 
     private static final class RetrofitHolder{
-        private static final String BASE_URL = "192.168.10.108:8080/";
+        private static final String BASE_URL = "http://192.168.10.103:8080";
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
-                .addConverterFactory(GsonConverterFactory.create())
+//                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }
 
@@ -36,7 +41,7 @@ public class RestCreator {
                 .build();
     }
 
-    private static final class RestServiceHolder{
-        private static final RestService REST_SERVICE = RetrofitHolder.RETROFIT_CLIENT.create(RestService.class);
+    private static final class RestServiceAPIHolder {
+        private static final RestServiceAPI REST_SERVICE_API = RetrofitHolder.RETROFIT_CLIENT.create(RestServiceAPI.class);
     }
 }

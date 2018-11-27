@@ -1,31 +1,30 @@
 package com.xiaoming.exercise.mygymclub.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.SparseArray;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xfhy.easybanner.ui.EasyBanner;
+import com.xiaoming.exercise.mygymclub.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageFragment extends Fragment {
-    private GridView mRecommendGridView;
+    private RecyclerView mRecommendGridView;
     private EasyBanner mNewsBanner;
     private Button mRecommedButton;
 
-    private MyGidViewAdapter mAdapter;
+    private MyRecyclerViewAdapter mAdapter;
     private ArrayList<MyIcon> mMyIcons;
 
     private List<String> mIMGList;
@@ -39,7 +38,7 @@ public class HomePageFragment extends Fragment {
         mMyIcons.add(new MyIcon(R.drawable.sport, "this class"));
         mMyIcons.add(new MyIcon(R.drawable.banner_gym, "another class"));
 
-        mAdapter = new MyGidViewAdapter(mMyIcons);
+        mAdapter = new MyRecyclerViewAdapter(mMyIcons);
 
         mIMGList = getImageUrlData();
     }
@@ -58,7 +57,8 @@ public class HomePageFragment extends Fragment {
         //全部推荐项目
         mRecommedButton = v.findViewById(R.id.button_recommend);
         //推荐的项目
-        mRecommendGridView = v.findViewById(R.id.recomend_grid_view);
+        mRecommendGridView = v.findViewById(R.id.recomend_recycler_view);
+        mRecommendGridView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecommendGridView.setAdapter(mAdapter);
 
         return v;
@@ -118,131 +118,56 @@ public class HomePageFragment extends Fragment {
         }
     }
 
-    private static class MyGidViewAdapter extends BaseAdapter {
-        private ArrayList<MyIcon> mDatas;
 
-        public MyGidViewAdapter(ArrayList<MyIcon> datas) {
-            mDatas = datas;
+
+    private class MyRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView mTitle;
+        private ImageView mImage;
+
+        public MyRecyclerViewHolder(LayoutInflater inflater, ViewGroup parent) {
+            super(inflater.inflate(R.layout.item_grid_view_icon, parent, false));
+            itemView.setOnClickListener(this);
+
+            mTitle = itemView.findViewById(R.id.item_grid_title);
+            mImage = itemView.findViewById(R.id.item_grid_image);
+        }
+
+        public void bind(MyIcon myIcon) {
+            mImage.setImageResource(myIcon.getResId());
+            mTitle.setText(myIcon.getInfom());
         }
 
         @Override
-        public int getCount() {
-            return mDatas == null ? 0 : mDatas.size();
-        }
+        public void onClick(View v) {
 
-        @Override
-        public MyIcon getItem(int position) {
-            return mDatas.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            MyViewHolder holder = MyViewHolder.bind(parent.getContext(), convertView, parent,
-                    R.layout.item_grid_view_icon, position);
-            holder.setImageResource(R.id.item_grid_image, getItem(position).getResId());
-            holder.setText(R.id.item_grid_title, getItem(position).getInfom());
-
-            return holder.getItemView();
-        }
-
-
-        //添加一个元素
-        public void add(MyIcon data) {
-            if (mDatas == null) {
-                mDatas = new ArrayList<>();
-            }
-            mDatas.add(data);
-            notifyDataSetChanged();
         }
     }
 
-    public static class MyViewHolder {
+    private class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHolder> {
 
-        private SparseArray<View> mViews;   //存储ListView 的 item中的View
-        private View item;                  //存放convertView
-        private int position;               //游标
-        private Context context;            //Context上下文
+        private List<MyIcon> mDatas;
 
-        //构造方法，完成相关初始化
-        private MyViewHolder(Context context, ViewGroup parent, int layoutRes) {
-            mViews = new SparseArray<>();
-            this.context = context;
-            View convertView = LayoutInflater.from(context).inflate(layoutRes, parent, false);
-            convertView.setTag(this);
-            item = convertView;
+        public MyRecyclerViewAdapter(List<MyIcon> datas) {
+            mDatas = datas;
         }
 
-        //绑定ViewHolder与item
-        public static MyViewHolder bind(Context context, View convertView, ViewGroup parent,
-                                        int layoutRes, int position) {
-            MyViewHolder holder;
-            if (convertView == null) {
-                holder = new MyViewHolder(context, parent, layoutRes);
-            } else {
-                holder = (MyViewHolder) convertView.getTag();
-                holder.item = convertView;
-            }
-            holder.position = position;
+        @NonNull
+        @Override
+        public MyRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
 
-
-
-
-            return holder;
+            return new MyRecyclerViewHolder(inflater, parent);
         }
 
-        @SuppressWarnings("unchecked")
-        public <T extends View> T getView(int id) {
-            T t = (T) mViews.get(id);
-            if (t == null) {
-                t = (T) item.findViewById(id);
-                mViews.put(id, t);
-            }
-            return t;
+        @Override
+        public void onBindViewHolder(@NonNull MyRecyclerViewHolder myRecyclerViewHolder, int i) {
+            MyIcon crime = mDatas.get(i);
+            myRecyclerViewHolder.bind(crime);
         }
 
-
-        /**
-         * 获取当前条目
-         */
-        public View getItemView() {
-            return item;
+        @Override
+        public int getItemCount() {
+            return mDatas.size();
         }
-
-        /**
-         * 获取条目位置
-         */
-        public int getItemPosition() {
-            return position;
-        }
-
-        /**
-         * 设置文字
-         */
-        public MyViewHolder setText(int id, CharSequence text) {
-            View view = getView(id);
-            if (view instanceof TextView) {
-                ((TextView) view).setText(text);
-            }
-            return this;
-        }
-
-        /**
-         * 设置图片
-         */
-        public MyViewHolder setImageResource(int id, int drawableRes) {
-            View view = getView(id);
-            if (view instanceof ImageView) {
-                ((ImageView) view).setImageResource(drawableRes);
-            } else {
-                view.setBackgroundResource(drawableRes);
-            }
-            return this;
-        }
-
     }
 }

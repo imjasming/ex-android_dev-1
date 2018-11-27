@@ -33,15 +33,17 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener((View v) -> {
             if (checkForm()){
                 RestClient.builder()
-                        .url("192.168.10.108:8080/login/")
+                        .url("/signin")
                         .params("username", username)
                         .params("password", password)
                         .success(response -> {
                             Intent intent = new Intent(this, MainActivity.class);
                             startActivity(intent);
+                            Toast.makeText(this, response,Toast.LENGTH_LONG).show();
                         })
-                        .failure(() -> {
-
+                        .failure(response -> {
+                            response.printStackTrace();
+                            Toast.makeText(this, response.toString(),Toast.LENGTH_LONG).show();
                         })
                         .error((code, msg) -> {
                             Toast.makeText(this, "用户名或密码输入错误",Toast.LENGTH_LONG).show();
@@ -49,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                         .build()
                         .post();
 
-                this.finish();
+                //this.finish();
             }
         });
         mRegisterButton.setOnClickListener((View v) -> {

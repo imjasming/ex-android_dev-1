@@ -17,6 +17,11 @@ public class RequestCallbacks implements Callback<String> {
         this.REQUEST = REQUEST;
     }
 
+    /**
+     * 请求成功时回调
+     * @param call
+     * @param response
+     */
     @Override
     public void onResponse(Call<String> call, Response<String> response) {
         if (response.isSuccessful()){
@@ -35,7 +40,7 @@ public class RequestCallbacks implements Callback<String> {
     @Override
     public void onFailure(Call<String> call, Throwable t) {
         if (FAILURE!=null){
-            FAILURE.onFailure();
+            FAILURE.onFailure(t);
         }
         if (REQUEST!=null){
             REQUEST.onRequestEnd();

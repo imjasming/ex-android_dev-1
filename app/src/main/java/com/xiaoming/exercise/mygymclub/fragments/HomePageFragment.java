@@ -24,11 +24,11 @@ import butterknife.ButterKnife;
 
 public class HomePageFragment extends Fragment {
     @BindView(R.id.list_home_recomend_recycler_view)
-    private RecyclerView mRecommendGridView;
+    RecyclerView mRecommendGridView;
     @BindView(R.id.banner_home_news)
-    private EasyBanner mNewsBanner;
+    EasyBanner mNewsBanner;
     @BindView(R.id.btn_home_recommend)
-    private Button mRecommedButton;
+    Button mRecommedButton;
 
     private MyRecyclerViewAdapter mAdapter;
     private ArrayList<MyIcon> mMyIcons;
@@ -123,11 +123,11 @@ public class HomePageFragment extends Fragment {
 
 
 
-    private class MyRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MyRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.item_grid_title)
-        private TextView mTitle;
+        TextView mTitle;
         @BindView(R.id.item_grid_image)
-        private ImageView mImage;
+        ImageView mImage;
 
         public MyRecyclerViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_grid_view_icon, parent, false));

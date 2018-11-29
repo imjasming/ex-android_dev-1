@@ -16,17 +16,17 @@ import butterknife.ButterKnife;
 public class RegisterActivity extends AppCompatActivity {
 
     @BindView(R.id.edt_register_username)
-    private TextInputEditText mName;
+    TextInputEditText mName;
     @BindView(R.id.edt_register_email)
-    private TextInputEditText mEmail;
+    TextInputEditText mEmail;
     @BindView(R.id.edt_register_password)
-    private TextInputEditText mPassword;
+    TextInputEditText mPassword;
     @BindView(R.id.edt_register_password_2)
-    private TextInputEditText mPassword2;
+    TextInputEditText mPassword2;
     @BindView(R.id.btn_register_confirm)
-    private Button mConfirm;
+    Button mConfirm;
     @BindView(R.id.btn_register_back)
-    private Button mBack;
+    Button mBack;
 
     private String username;
     private String password;

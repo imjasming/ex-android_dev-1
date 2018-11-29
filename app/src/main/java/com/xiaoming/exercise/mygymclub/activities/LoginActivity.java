@@ -17,15 +17,15 @@ import butterknife.ButterKnife;
 public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.edt_login_username)
-    private TextInputEditText mName;
+    TextInputEditText mName;
     @BindView(R.id.edt_login_password)
-    private TextInputEditText mPassword;
+    TextInputEditText mPassword;
     @BindView(R.id.btn_login_login)
-    private Button mLoginButton;
+    Button mLoginButton;
     @BindView(R.id.btn_login_register)
-    private Button mRegisterButton;
+    Button mRegisterButton;
     @BindView(R.id.btn_login_forget)
-    private Button mForgetButton;
+    Button mForgetButton;
 
     private String username;
     private String password;

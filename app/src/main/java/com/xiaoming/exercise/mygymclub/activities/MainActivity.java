@@ -28,13 +28,13 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
-    private Toolbar toolbar;
+    Toolbar toolbar;
     @BindView(R.id.nav_bar_home_bottom)
-    private LinearLayout mBottomNavigationBar;
+    LinearLayout mBottomNavigationBar;
     @BindView(R.id.tab_home_page)
-    private TextView mTabMenuHome;
+    TextView mTabMenuHome;
     @BindView(R.id.tab_train)
-    private TextView mTabTrainerBooking;
+    TextView mTabTrainerBooking;
 
     private FragmentManager mFragmentManager;
     private Fragment mFragmentShown;
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @OnClick({R.id.tab_home_page, R.id.tab_train})
-    private void onBottomNavigationBarSelected(View v) {
+    void onBottomNavigationBarSelected(View v) {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         //先隐藏全部Fragment
         switch (v.getId()) {

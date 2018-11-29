@@ -12,13 +12,16 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * Create Retrofit
  */
 public class RestCreator {
-    private static class ParamsHolder{
-        public static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();
+    /**
+     * 该段代码的 PARAMS 为全局静态变量，线程不安全，引以为戒
+     */
+    /*private static class ParamsHolder{
+        private static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();
     }
 
     public static WeakHashMap<String,Object> getParams(){
         return ParamsHolder.PARAMS;
-    }
+    }*/
 
     public static RestServiceAPI getRestServiceAPI(){
         return RestServiceAPIHolder.REST_SERVICE_API;
@@ -29,7 +32,7 @@ public class RestCreator {
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
-//                .addConverterFactory(GsonConverterFactory.create())
+                /*.addConverterFactory(GsonConverterFactory.create())*/
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }

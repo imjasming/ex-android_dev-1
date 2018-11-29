@@ -6,7 +6,6 @@ import com.xiaoming.exercise.mygymclub.net.callback.IRequest;
 import com.xiaoming.exercise.mygymclub.net.callback.ISuccess;
 import com.xiaoming.exercise.mygymclub.net.callback.RequestCallbacks;
 
-import java.util.Map;
 import java.util.WeakHashMap;
 
 import retrofit2.Call;
@@ -15,7 +14,7 @@ import retrofit2.Callback;
 
 public class RestClient {
     private final String URL;
-    private final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
+    private final WeakHashMap<String, Object> PARAMS;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
@@ -23,14 +22,14 @@ public class RestClient {
     private final RequestBody BODY;
 
     RestClient(String url,
-               Map<String, Object> params,
+               WeakHashMap<String, Object> params,
                ISuccess success,
                IFailure failure,
                IError error,
                IRequest request,
                RequestBody body) {
         this.URL = url;
-        this.PARAMS.putAll(params);
+        this.PARAMS = params;
         this.SUCCESS = success;
         this.FAILURE = failure;
         this.ERROR = error;

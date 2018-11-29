@@ -13,57 +13,57 @@ import okhttp3.RequestBody;
 
 public class RestClientBuilder {
     private String mUrl;
-    private Map<String, Object> mParams = RestCreator.getParams();
+    private final WeakHashMap<String, Object> mParams = new WeakHashMap<>();
     private ISuccess mSuccess;
     private IFailure mFailure;
     private IError mError;
     private IRequest mRequest;
     private RequestBody mBody;
 
-    RestClientBuilder(){
+    RestClientBuilder() {
     }
 
-    public final RestClientBuilder url(String url){
+    public final RestClientBuilder url(String url) {
         this.mUrl = url;
         return this;
     }
 
-    public final RestClientBuilder params(WeakHashMap<String,Object> params){
+    public final RestClientBuilder params(WeakHashMap<String, Object> params) {
         this.mParams.putAll(params);
         return this;
     }
 
-    public final RestClientBuilder params(String key, Object value){
+    public final RestClientBuilder params(String key, Object value) {
         this.mParams.put(key, value);
         return this;
     }
 
-    public final RestClientBuilder raw(String raw){
+    public final RestClientBuilder raw(String raw) {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
     }
 
-    public final RestClientBuilder onRequest(IRequest request){
+    public final RestClientBuilder onRequest(IRequest request) {
         this.mRequest = request;
         return this;
     }
 
-    public final RestClientBuilder success(ISuccess success){
+    public final RestClientBuilder success(ISuccess success) {
         this.mSuccess = success;
         return this;
     }
 
-    public final RestClientBuilder failure(IFailure failure){
+    public final RestClientBuilder failure(IFailure failure) {
         this.mFailure = failure;
         return this;
     }
 
-    public final RestClientBuilder error(IError error){
+    public final RestClientBuilder error(IError error) {
         this.mError = error;
         return this;
     }
 
-    public final RestClient build(){
-        return new RestClient(mUrl,mParams,mSuccess,mFailure, mError,mRequest,mBody);
+    public final RestClient build() {
+        return new RestClient(mUrl, mParams, mSuccess, mFailure, mError, mRequest, mBody);
     }
 }

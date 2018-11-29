@@ -20,12 +20,21 @@ import com.xiaoming.exercise.mygymclub.R;
 import com.xiaoming.exercise.mygymclub.fragments.HomePageFragment;
 import com.xiaoming.exercise.mygymclub.fragments.TrainerBookingFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    @BindView(R.id.toolbar)
     private Toolbar toolbar;
+    @BindView(R.id.nav_bar_home_bottom)
     private LinearLayout mBottomNavigationBar;
+    @BindView(R.id.tab_home_page)
     private TextView mTabMenuHome;
-    private TextView mTabMenuBooking;
+    @BindView(R.id.tab_train)
+    private TextView mTabTrainerBooking;
 
     private FragmentManager mFragmentManager;
     private Fragment mFragmentShown;
@@ -34,9 +43,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        //绑定实例域
-        bindField();
+        mFragmentManager = getSupportFragmentManager();
 
         //这里自动生成，不是我写的
         setSupportActionBar(toolbar);
@@ -113,24 +122,13 @@ public class MainActivity extends AppCompatActivity
     }
 //End of Auto Generated
 
-    private void bindField() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        mFragmentManager = getSupportFragmentManager();
-        mBottomNavigationBar = findViewById(R.id.bottomNavigationBar);
-
-        mTabMenuHome = findViewById(R.id.tab_home_page);
-        mTabMenuHome.setOnClickListener(this::onBottomNavigationBarSelected);
-
-        mTabMenuBooking = findViewById(R.id.tab_train);
-        mTabMenuBooking.setOnClickListener(this::onBottomNavigationBarSelected);
-    }
 
     private void setSelected() {
         mTabMenuHome.setSelected(false);
-        mTabMenuBooking.setSelected(false);
+        mTabTrainerBooking.setSelected(false);
     }
 
+    @OnClick({R.id.tab_home_page, R.id.tab_train})
     private void onBottomNavigationBarSelected(View v) {
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         //先隐藏全部Fragment
@@ -145,7 +143,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.tab_train:
                 setSelected();
-                mTabMenuBooking.setSelected(true);
+                mTabTrainerBooking.setSelected(true);
                 mFragmentShown = new TrainerBookingFragment();
                 transaction.replace(R.id.fragment_container_main, mFragmentShown);
                 toolbar.setTitle(R.string.trainer_list_title);

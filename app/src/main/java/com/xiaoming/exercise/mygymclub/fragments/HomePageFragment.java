@@ -19,9 +19,15 @@ import com.xiaoming.exercise.mygymclub.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomePageFragment extends Fragment {
+    @BindView(R.id.list_home_recomend_recycler_view)
     private RecyclerView mRecommendGridView;
+    @BindView(R.id.banner_home_news)
     private EasyBanner mNewsBanner;
+    @BindView(R.id.btn_home_recommend)
     private Button mRecommedButton;
 
     private MyRecyclerViewAdapter mAdapter;
@@ -48,16 +54,13 @@ public class HomePageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.home_page_fragment, container, false);
+        ButterKnife.bind(this, v);
 
         //首页轮播图
-        mNewsBanner = v.findViewById(R.id.news_banner);
         mNewsBanner.initBanner(mIMGList, getContentData());
         mNewsBanner.start();
 
-        //全部推荐项目
-        mRecommedButton = v.findViewById(R.id.button_recommend);
         //推荐的项目
-        mRecommendGridView = v.findViewById(R.id.recomend_recycler_view);
         mRecommendGridView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecommendGridView.setAdapter(mAdapter);
 
@@ -121,15 +124,15 @@ public class HomePageFragment extends Fragment {
 
 
     private class MyRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @BindView(R.id.item_grid_title)
         private TextView mTitle;
+        @BindView(R.id.item_grid_image)
         private ImageView mImage;
 
         public MyRecyclerViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_grid_view_icon, parent, false));
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
-
-            mTitle = itemView.findViewById(R.id.item_grid_title);
-            mImage = itemView.findViewById(R.id.item_grid_image);
         }
 
         public void bind(MyIcon myIcon) {

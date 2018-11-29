@@ -12,6 +12,7 @@ import com.xiaoming.exercise.mygymclub.R;
 import com.xiaoming.exercise.mygymclub.net.RestClient;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+        ButterKnife.bind(this);
 
         mLoginButton.setOnClickListener((View v) -> {
             if (checkForm()){

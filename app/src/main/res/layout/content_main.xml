@@ -17,7 +17,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/colorBackground"
         android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar"
+        app:layout_constraintBottom_toTopOf="@+id/nav_bar_home_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,7 +27,7 @@
 
     <!--底部导航栏-->
     <LinearLayout
-        android:id="@+id/bottomNavigationBar"
+        android:id="@+id/nav_bar_home_bottom"
         android:layout_width="0dp"
         android:layout_height="31dp"
         android:layout_marginBottom="2dp"

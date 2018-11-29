@@ -13,7 +13,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 public class RestCreator {
     /**
-     * 该段代码的 PARAMS 为全局静态变量，线程不安全，引以为戒
+     * 该段代码的 PARAMS 为全局静态变量，线程不安全，望引以为戒
      */
     /*private static class ParamsHolder{
         private static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();

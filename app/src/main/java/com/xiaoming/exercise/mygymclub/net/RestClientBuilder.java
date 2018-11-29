@@ -5,7 +5,6 @@ import com.xiaoming.exercise.mygymclub.net.callback.IFailure;
 import com.xiaoming.exercise.mygymclub.net.callback.IRequest;
 import com.xiaoming.exercise.mygymclub.net.callback.ISuccess;
 
-import java.util.Map;
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;

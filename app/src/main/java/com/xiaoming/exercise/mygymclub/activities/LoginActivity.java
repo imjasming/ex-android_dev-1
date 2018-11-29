@@ -4,22 +4,28 @@ import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.xiaoming.exercise.mygymclub.R;
 import com.xiaoming.exercise.mygymclub.net.RestClient;
-import com.xiaoming.exercise.mygymclub.net.callback.IError;
-import com.xiaoming.exercise.mygymclub.net.callback.IFailure;
+
+import butterknife.BindView;
 
 public class LoginActivity extends AppCompatActivity {
+
+    @BindView(R.id.edt_login_username)
     private TextInputEditText mName;
+    @BindView(R.id.edt_login_password)
     private TextInputEditText mPassword;
+    @BindView(R.id.btn_login_login)
     private Button mLoginButton;
+    @BindView(R.id.btn_login_register)
     private Button mRegisterButton;
+    @BindView(R.id.btn_login_forget)
     private Button mForgetButton;
+
     private String username;
     private String password;
     private String email;
@@ -28,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        bindView();
 
         mLoginButton.setOnClickListener((View v) -> {
             if (checkForm()){
@@ -40,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(this, MainActivity.class);
                             startActivity(intent);
                             Toast.makeText(this, response,Toast.LENGTH_LONG).show();
+                            this.finish();
                         })
                         .failure(response -> {
                             response.printStackTrace();
@@ -58,14 +64,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
         });
-    }
-
-    private void bindView(){
-        mName = findViewById(R.id.edit_login_username);
-        mPassword = findViewById(R.id.edit_login_password);
-        mLoginButton = findViewById(R.id.button_login);
-        mRegisterButton = findViewById(R.id.button_login_register);
-        mForgetButton = findViewById(R.id.button_login_forget);
     }
 
     private boolean checkForm() {

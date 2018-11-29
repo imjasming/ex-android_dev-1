@@ -5,22 +5,28 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.xiaoming.exercise.mygymclub.R;
 import com.xiaoming.exercise.mygymclub.net.RestClient;
-import com.xiaoming.exercise.mygymclub.net.callback.IError;
-import com.xiaoming.exercise.mygymclub.net.callback.ISuccess;
+
+import butterknife.BindView;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    @BindView(R.id.edt_register_username)
     private TextInputEditText mName;
+    @BindView(R.id.edt_register_email)
     private TextInputEditText mEmail;
+    @BindView(R.id.edt_register_password)
     private TextInputEditText mPassword;
+    @BindView(R.id.edt_register_password_2)
     private TextInputEditText mPassword2;
+    @BindView(R.id.btn_register_confirm)
     private Button mConfirm;
+    @BindView(R.id.btn_register_back)
     private Button mBack;
+
     private String username;
     private String password;
     private String email;
@@ -29,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        bindView();
 
         mConfirm.setOnClickListener(v -> {
             if (checkForm()) {
@@ -52,15 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         mBack.setOnClickListener(e -> onBack());
-    }
-
-    private void bindView() {
-        mName = findViewById(R.id.edit_register_username);
-        mEmail = findViewById(R.id.edit_register_email);
-        mPassword = findViewById(R.id.edit_register_password);
-        mPassword2 = findViewById(R.id.edit_register_password_2);
-        mConfirm = findViewById(R.id.button_register_confirm);
-        mBack = findViewById(R.id.button_register_back);
     }
 
     private boolean checkForm() {

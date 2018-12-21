@@ -1,9 +1,7 @@
 # ex-android_dev-1
 ## introduction  
-这是移动应用开发技术的实践练习作业1  
-**非常简单**：一个未完成的健身app，截止2018-10-16，只完成了登录界面，注册界面，主界面和教练booking list界面，  
-以及提供在这些界面间切换的功能，其他功能皆未提供  
+这是移动应用开发技术的实践练习第一次，第二次（fragment），第三次作业（connect to server）    
 团队：张小明（16301026），蒋威威  
 所用技术：ConstraintLayout，GridView，NavigationBar，BottomNavigationBar，Intent，Activity，  
-Fragment，以及第三方的轮播图 EasyBanner    
+Fragment，Retrofit，Butterknife，以及第三方的轮播图 EasyBanner    
 其中，登陆界面，主界面由张小明编写，注册界面和教练booking list界面由蒋威威编写
